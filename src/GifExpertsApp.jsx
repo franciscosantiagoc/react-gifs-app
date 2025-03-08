@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { SearchCategory } from "./Components/SearchCategory";
+import { CategorySearch } from "./Components/CategorySearch";
 import { getHistory } from "./utils/Functions";
+import { CategoryHistory } from "./Components/CategoryHistory";
 
 export const GifExpertsApp = () => {
     const initialHistory = getHistory();
@@ -14,10 +15,10 @@ export const GifExpertsApp = () => {
         </header>
         <div className="row">
             <div className="col-3">
-
+                <CategoryHistory categories={categories} setCategories={setCategories}/>
             </div>
             <div className="col-9">
-                <SearchCategory setCategories={setCategories}/>
+                <CategorySearch setCategories={setCategories}/>
             </div>
         </div>
     </>

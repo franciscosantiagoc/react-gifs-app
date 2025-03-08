@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { addItemToHistory } from '../utils/Functions'
 
-export const SearchCategory = ({
+export const CategorySearch = ({
     setCategories,
 }) => {
     const [inputValue, setInputValue] = useState('')
