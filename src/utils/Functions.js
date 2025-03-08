@@ -2,4 +2,20 @@ let historyNameItem = "gifsHistory"
 export const getHistory = () => {
     let history = localStorage.getItem(historyNameItem);
     history = history ? JSON.parse(history) : [];
+    return history;
+}
+
+export const setHistory = (history) => {
+    localStorage.setItem(historyNameItem, JSON.stringify(history));
+}
+
+export const addItemToHistory = (item) => {
+    let history = getHistory();
+    if(history.includes(item)) {
+        history = history.filter(itemHistory => itemHistory != item);
+    }
+    history.push(item);
+    
+    setHistory(history);
+    return history;
 }
