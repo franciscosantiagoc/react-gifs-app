@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { SearchCategory } from "./Components/SearchCategory";
+import { getHistory } from "./utils/Functions";
 
 export const GifExpertsApp = () => {
+    const initialHistory = getHistory();
 
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(initialHistory);
+    
   return (
     <>  
         <header>
@@ -14,7 +17,7 @@ export const GifExpertsApp = () => {
 
             </div>
             <div className="col-9">
-                <SearchCategory />
+                <SearchCategory setCategories={setCategories}/>
             </div>
         </div>
     </>

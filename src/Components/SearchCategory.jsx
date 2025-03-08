@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { addItemToHistory } from '../utils/Functions'
 
-export const SearchCategory = () => {
+export const SearchCategory = ({
+    setCategories,
+}) => {
+    const [inputValue, setInputValue] = useState('')
+
+    const handleChangeValue = (event) => {
+        setInputValue(event.target.value)
+    }
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        let items = addItemToHistory(inputValue);
+        setCategories(items);
+        setInputValue('');
+    }
   return (
-    <div>
+    <form onSubmit={handleSearch}>
         <label>Agrega la categoria a buscar</label>
         <div className="form-group d-flex flex-row">
-            <input type="text" name="searchCategory" placeholder="Ejemplo: tecnologia" />
-            <button className='btn btn-primary'>Buscar</button>
+            <input type="text" name="searchCategory" value={inputValue} 
+            placeholder="Ejemplo: tecnologia" onChange={handleChangeValue}/>
+            <button type='submit' className='btn btn-primary'>Buscar</button>
         </div>
-    </div>
+    </form>
   )
 }
