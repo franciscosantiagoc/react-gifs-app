@@ -19,3 +19,11 @@ export const addItemToHistory = (item) => {
     setHistory(history);
     return history;
 }
+
+export const removeItemToHistory = (item) => {
+    let history = getHistory();
+    history = history.filter(category => category != item);
+    
+    setHistory(history);
+    return history;
+}
