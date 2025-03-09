@@ -51,8 +51,8 @@ export const GifExpertsApp = () => {
           <CategorySearch handleSearch={handleSearch} />
           <div className="container">
             {
-                searches.length >0 && searches.map((search, index) => (
-                    <CategoryListGrid key={search} />
+                searches.length >0 && searches.map((search) => (
+                    <CategoryListGrid key={search} category={search} />
                 ))
             }
           </div>
