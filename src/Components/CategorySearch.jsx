@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { addItemToHistory } from '../utils/Functions'
 
 export const CategorySearch = ({
     handleSearch

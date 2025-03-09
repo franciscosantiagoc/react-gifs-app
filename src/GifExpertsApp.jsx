@@ -4,7 +4,7 @@ import {
   getHistory,
   addItemToHistory,
   removeItemToHistory,
-} from "./utils/Functions";
+} from "./utils/historyFunctions";
 import { CategoryHistory } from "./Components/CategoryHistory";
 import { CategoryListGrid } from "./Components/CategoryListGrid";
 
@@ -16,6 +16,8 @@ export const GifExpertsApp = () => {
   const handleSearch = (value) => {
     let items = addItemToHistory(value);
     setCategories(items);
+    let newSearches = searches.filter(item=>item!=value);
+    setSearches([value, ...newSearches]);
   };
 
   const handleDeleteItem = (category) => {
@@ -39,25 +41,28 @@ export const GifExpertsApp = () => {
       <header>
         <h1>GifExpertsApp</h1>
       </header>
-      <div className="row">
-        <div className="col-3">
-          <CategoryHistory
-            categories={categories}
-            handleSearch={handleSearch}
-            handleDeleteItem={handleDeleteItem}
-          />
+      
+      <main>
+        <div className="row">
+            <div className="col-3">
+            <CategoryHistory
+                categories={categories}
+                handleSearch={handleSearch}
+                handleDeleteItem={handleDeleteItem}
+            />
+            </div>
+            <div className="col-9">
+            <CategorySearch handleSearch={handleSearch} />
+            <div className="container">
+                {
+                    searches.length >0 && searches.reverse().map((search) => (
+                        <CategoryListGrid key={search} category={search} />
+                    ))
+                }
+            </div>
+            </div>
         </div>
-        <div className="col-9">
-          <CategorySearch handleSearch={handleSearch} />
-          <div className="container">
-            {
-                searches.length >0 && searches.map((search) => (
-                    <CategoryListGrid key={search} category={search} />
-                ))
-            }
-          </div>
-        </div>
-      </div>
+      </main>
     </>
   );
 };
