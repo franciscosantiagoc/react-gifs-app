@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import { CategorySearch } from "./Components/CategorySearch";
-import { getHistory, addItemToHistory, removeItemToHistory } from "./utils/Functions";
+import {
+  getHistory,
+  addItemToHistory,
+  removeItemToHistory,
+} from "./utils/Functions";
 import { CategoryHistory } from "./Components/CategoryHistory";
+import { CategoryListGrid } from "./Components/CategoryListGrid";
 
 export const GifExpertsApp = () => {
   const initialHistory = getHistory();
   const [categories, setCategories] = useState(initialHistory);
+  const [searches, setSearches] = useState([]);
 
   const handleSearch = (value) => {
     let items = addItemToHistory(value);
@@ -16,12 +22,11 @@ export const GifExpertsApp = () => {
     setCategories(removeItemToHistory(category));
   };
 
-  const fetchInfo = async (textToFind) => {};
 
   const getLatesSearchedCategory = () => {
     if (categories.length > 0) {
       let lastItem = categories[categories.length - 1];
-      fetchInfo(lastItem);
+      setSearches([...searches, lastItem]);
     }
   };
 
@@ -44,6 +49,13 @@ export const GifExpertsApp = () => {
         </div>
         <div className="col-9">
           <CategorySearch handleSearch={handleSearch} />
+          <div className="container">
+            {
+                searches.length >0 && searches.map((search, index) => (
+                    <CategoryListGrid key={search} />
+                ))
+            }
+          </div>
         </div>
       </div>
     </>
