@@ -14,7 +14,10 @@ export const addItemToHistory = (item) => {
     if(history.includes(item)) {
         history = history.filter(itemHistory => itemHistory != item);
     }
-    history.push(item);
+    history= [
+        ...history,
+        item
+    ];
     
     setHistory(history);
     return history;

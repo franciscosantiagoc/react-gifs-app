@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { addItemToHistory } from '../utils/Functions'
 
 export const CategorySearch = ({
-    setCategories,
+    handleSearch
 }) => {
     const [inputValue, setInputValue] = useState('')
 
@@ -10,14 +10,15 @@ export const CategorySearch = ({
         setInputValue(event.target.value)
     }
 
-    const handleSearch = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        let items = addItemToHistory(inputValue);
-        setCategories(items);
+        if(inputValue.length < 1) return;
+        
+        handleSearch(inputValue.trim())
         setInputValue('');
     }
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={handleSubmit}>
         <label>Agrega la categoria a buscar</label>
         <div className="form-group d-flex flex-row">
             <input type="text" name="searchCategory" value={inputValue} 

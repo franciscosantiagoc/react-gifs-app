@@ -1,17 +1,15 @@
 import { FaBan } from "react-icons/fa6";
 import './../assets/categoryHistory.css';
-import { addItemToHistory, removeItemToHistory } from "../utils/Functions";
 
-export const CategoryHistory = ({ categories, setCategories }) => {
-    const handleResearch = (category) => {
-        console.log('handleResearch')
-        setCategories(addItemToHistory(category));
+export const CategoryHistory = ({ categories, handleSearch, handleDeleteItem }) => {
+    const handleClick = (category) => {
+        handleSearch(category);
     };
 
     const handleDelete = (category) => {
-        console.log('handleDelete')
-        setCategories(removeItemToHistory(category))
+        handleDeleteItem(category)
     }
+
     return (
         <div className="category-history">
             <h4>Historial de búsqueda</h4>
@@ -20,7 +18,7 @@ export const CategoryHistory = ({ categories, setCategories }) => {
                     {
                         categories.map((category, index) => (
                             <li className='card-history' key={index}>
-                                <span onClick={() => handleResearch(category)}
+                                <span onClick={() => handleClick(category)}
                                     data-bs-toggle="tooltip" data-bs-placement="right"
                                     title={`Buscar '${category}'`}>{category}</span>
                                 <button onClick={() => handleDelete(category)}
