@@ -17,7 +17,7 @@ export const isAFavoriteGif = (item) => {
 
 export const addFavoriteGif = (item) => {
     const favoriteImages = getFavoriteGifs();
-    const isSaved = favoriteImages.includes(item);
+    const isSaved = favoriteImages.some(img=>img.id==item.id);
 
     const newFavorites = isSaved
         ? favoriteImages.filter(img => img.id !== item.id)
