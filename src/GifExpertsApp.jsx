@@ -43,7 +43,7 @@ export const GifExpertsApp = () => {
       </header>
       
       <main>
-        <div className="row">
+        <div className="row gifs-container">
             <div className="col-3">
             <CategoryHistory
                 categories={categories}
