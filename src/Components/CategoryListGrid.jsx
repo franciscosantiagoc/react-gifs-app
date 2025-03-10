@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import './../assets/categoryListGrid.css';
 import { CategoryCard } from "./CategoryCard";
 import { getImages } from "../Services/GifServices";
+import { ToastContainer, toast } from 'react-toastify';
 export const CategoryListGrid = ({ category }) => {
   
   const [images, setimages] = useState([]);
+
+  const notify = (message) => {
+    toast.success(message)
+  }
 
   const fetchCategoryImages = async () => {
     let imagesResult = await getImages(category);
@@ -23,7 +28,7 @@ export const CategoryListGrid = ({ category }) => {
                 <div className="category-grid">
                     {
                         images.map((image) => 
-                            <CategoryCard key={image.id} {...image}/>
+                            <CategoryCard key={image.id} {...image} notify={notify}/>
                         )
                     }
                 </div>
@@ -32,6 +37,7 @@ export const CategoryListGrid = ({ category }) => {
         {
             images.length === 0 && (<p className="text-muted">No se han encontrado resultados.</p>)
         }
+        <ToastContainer />
     </div>
     );
 };
