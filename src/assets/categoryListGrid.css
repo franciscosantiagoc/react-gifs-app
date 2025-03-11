@@ -1,0 +1,90 @@
+.category-section {
+    margin-top: 30px;
+
+    .spinner-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(3 25 60 / 86%);
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 30;
+
+        .spinner-border {
+            width: 80px;
+            height: 80px;
+        }
+    }
+}
+
+.category-grid {
+    display              : grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap                  : 15px;
+
+    @media (max-width: 991pxpx) {
+        grid-template-columns: 2fr;
+    }
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        display       : flex;
+        flex-direction: column;
+        height        : fit-content;
+
+        .card-title {
+            margin            : 0;
+            padding           : 0 5px;
+            font-size         : 14px;
+            font-weight       : 600;
+            line-height       : 20px;
+            min-height        : 40px;
+            max-height        : 40px;
+            text-transform    : uppercase;
+            display           : -webkit-box;
+            line-clamp        : 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .card-image {
+            width   : 100%;
+            height  : 200px;
+            padding : 0;
+            border  : solid 1px #d7d4d4;
+            position: relative;
+
+            img {
+                width           : 100%;
+                height          : 100%;
+                object-fit      : cover;
+                background-color: #fff;
+            }
+
+            .icon-content {
+                position        : absolute;
+                width           : 30px;
+                height          : 30px;
+                border-radius   : 50%;
+                background-color: #fff;
+                border          : solid .5px #eeeeee;
+                right           : 10px;
+                bottom          : 10px;
+                display         : flex;
+                align-items     : center;
+                justify-content : center;
+                cursor: pointer;
+                
+                svg {
+                    fill: #b71a1a;
+                }
+            }
+
+        }
+    }
+}
