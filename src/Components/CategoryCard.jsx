@@ -1,11 +1,11 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { addFavoriteGif, isAFavoriteGif } from "../utils/favoritesFunctions";
 
-export const CategoryCard = (image) => {
-  const { title, tinyImg, username, largeImg, notify } = image;
+export const CategoryCard = ({ title, tinyImg, username, largeImg, notify }) => {
   const titleToShow = title ? title : username;
-  const hasSavedInFavorite = isAFavoriteGif(image);
+  const hasSavedInFavorite = isAFavoriteGif({ title, tinyImg, username, largeImg });
   const [isFavorite, setIsFavorite] = useState(hasSavedInFavorite);
 
   const handlerClick = () => {
@@ -24,16 +24,23 @@ export const CategoryCard = (image) => {
     <div className="card category-card">
       <div className="card-title">{titleToShow}</div>
       <div className="card-image">
-        <img src={tinyImg.url} alt={titleToShow} />
+        <img src={tinyImg} alt={titleToShow} />
         <span className="icon-content" onClick={handlerClick}>
           {isFavorite ? <FaHeart /> : <FaRegHeart />}
         </span>
       </div>
       <div className="card-actions">
-        <a href={largeImg.url} target="_blank" className="btn btn-primary">
+        <a href={largeImg} target="_blank" className="btn btn-primary">
           Visitar
         </a>
       </div>
     </div>
   );
 };
+
+CategoryCard.propTypes = { 
+  title: PropTypes.string.isRequired, 
+  tinyImg: PropTypes.object.isRequired, 
+  username: PropTypes.string.isRequired, 
+  largeImg: PropTypes.object.isRequired, 
+  notify: PropTypes.func.isRequired }

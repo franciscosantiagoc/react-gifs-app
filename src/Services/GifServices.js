@@ -18,8 +18,8 @@ export const getImages = async (category) => {
             id,
             username,
             title,
-            tinyImg: images.downsized_medium,
-            largeImg: images.downsized_large
+            tinyImg: images.downsized_medium.url,
+            largeImg: images.downsized_large.url
         }
     })
 
