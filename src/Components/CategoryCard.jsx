@@ -40,7 +40,8 @@ export const CategoryCard = ({ title, tinyImg, username, largeImg, notify }) => 
 
 CategoryCard.propTypes = { 
   title: PropTypes.string.isRequired, 
-  tinyImg: PropTypes.object.isRequired, 
+  tinyImg: PropTypes.string.isRequired, 
   username: PropTypes.string.isRequired, 
-  largeImg: PropTypes.object.isRequired, 
-  notify: PropTypes.func.isRequired }
+  largeImg: PropTypes.string.isRequired, 
+  notify: PropTypes.func
+}
