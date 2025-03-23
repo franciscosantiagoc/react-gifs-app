@@ -1,7 +1,9 @@
+import { getEnvironments }  from '../Config/config'
+
 const {
     VITE_API_KEY,
     VITE_API_URL
-} = import.meta.env;
+} = getEnvironments();
 
 export const getImages = async (category) => {
     let pathUrl = `${VITE_API_URL}?api_key=${VITE_API_KEY}&q=${category}`;
@@ -18,8 +20,8 @@ export const getImages = async (category) => {
             id,
             username,
             title,
-            tinyImg: images.downsized_medium,
-            largeImg: images.downsized_large
+            tinyImg: images.downsized_medium.url,
+            largeImg: images.downsized_large.url
         }
     })
 
