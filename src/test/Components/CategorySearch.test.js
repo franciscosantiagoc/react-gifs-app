@@ -9,4 +9,16 @@ describe('Pruebas en category search', () => {
         expect(input.value).toBe('Test value')
         //screen.debug()
      })
+
+     test('Debe de llamar al evento handleSearch si el input tiene un valor', () => { 
+        const inputValue = 'Terminator';
+        //TODO: ?
+        render(<CategorySearch handleSearch={()=>{}} />)
+
+        const input = screen.getByRole('textbox');
+        const form = screen.getByRole('form');
+        fireEvent.input(input, { target: { value: inputValue }})
+        fireEvent.submit(form)
+        expect(input.value).toBe('')
+      })
  })
