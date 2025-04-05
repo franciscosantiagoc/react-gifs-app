@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
 export const CategorySearch = ({
@@ -26,4 +27,8 @@ export const CategorySearch = ({
         </div>
     </form>
   )
+}
+
+CategorySearch.propTypes = {
+    handleSearch: PropTypes.func.isRequired
 }
