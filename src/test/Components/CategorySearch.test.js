@@ -24,4 +24,17 @@ describe('Pruebas en category search', () => {
         expect( handleSearch ).toHaveBeenCalledTimes(1);
         expect( handleSearch ).toHaveBeenCalledWith(inputValue);
       })
+     
+    test('No debe llamar al evento handleSearch si el input esta vacio', () => { 
+        const inputValue = '';
+        const handleSearch = jest.fn();
+        render(<CategorySearch handleSearch={ handleSearch } />)
+
+        const input = screen.getByRole('textbox');
+        const form = screen.getByRole('form');
+        fireEvent.input(input, { target: { value: inputValue }})
+        fireEvent.submit(form)
+        expect( input.value ).toBe('')
+        expect( handleSearch ).toHaveBeenCalledTimes(0);
+    })
  })
