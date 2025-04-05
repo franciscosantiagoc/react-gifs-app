@@ -12,13 +12,13 @@ export const CategorySearch = ({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(inputValue.length < 1) return;
+        if(inputValue.trim().length < 1) return;
         
         handleSearch(inputValue.trim())
         setInputValue('');
     }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} aria-label='form'>
         <label>Agrega la categoria a buscar</label>
         <div className="form-group d-flex flex-row">
             <input type="text" name="searchCategory" value={inputValue} 
