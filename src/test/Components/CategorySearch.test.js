@@ -12,13 +12,16 @@ describe('Pruebas en category search', () => {
 
      test('Debe de llamar al evento handleSearch si el input tiene un valor', () => { 
         const inputValue = 'Terminator';
-        //TODO: ?
-        render(<CategorySearch handleSearch={()=>{}} />)
+        const handleSearch = jest.fn();
+        render(<CategorySearch handleSearch={ handleSearch } />)
 
         const input = screen.getByRole('textbox');
         const form = screen.getByRole('form');
         fireEvent.input(input, { target: { value: inputValue }})
         fireEvent.submit(form)
-        expect(input.value).toBe('')
+        expect( input.value ).toBe('')
+        expect( handleSearch ).toHaveBeenCalled();
+        expect( handleSearch ).toHaveBeenCalledTimes(1);
+        expect( handleSearch ).toHaveBeenCalledWith(inputValue);
       })
  })
